@@ -25,9 +25,13 @@
               id="next"
               @click="
                 incrementData();
-                loading();
+                loadingData();
               "
             >
+            <div v-if="loading" class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+              
               Next product
             </button>
             <!-- </a> -->
@@ -48,6 +52,7 @@ export default {
     return {
       stores: [],
       next: 1,
+      loading: false
     };
   },
 
@@ -71,10 +76,17 @@ export default {
       if ((await response).data.category == "men's clothing") {
         this.stores = (await response).data;
       } else {
+        this.next=1;
         alert("This is last product for mens");
       }
       console.log(this.next);
     },
+    loadingData(){
+      this.loading=!false
+      setTimeout(()=>{
+        this.loading=!true
+      },1000)
+    }
   },
 };
 </script>

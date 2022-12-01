@@ -19,13 +19,26 @@
             <button class="customBuy">Buy now</button>
           </div>
           <div class="col-md-4">
+            <div class="col-md-4">
             <!-- <a href=""> -->
-            <button class="customNext" @click="incrementData()">
+            <button
+              class="customNext"
+              id="next"
+              @click="
+                incrementData();
+                loadingData();
+              "
+            >
+            <div v-if="loading" class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+              
               Next product
             </button>
             <!-- </a> -->
           </div>
-          <div class="com-md-2"></div>
+          </div>
+          <div class="com-md-4"></div>
         </div>
       </div>
     </div>
@@ -39,6 +52,7 @@ export default {
     return {
       stores: [],
       next: 15,
+      loading: false
     };
   },
 
@@ -60,10 +74,17 @@ export default {
       if ((await response).data.category == "women's clothing") {
         this.stores = (await response).data;
       }else{
+        this.next=15;
         alert("This is last product for womens")
       }
       // console.log(this.next);
     },
+    loadingData(){
+      this.loading=!false
+      setTimeout(()=>{
+        this.loading=!true
+      },1000)
+    }
   },
   // incrementData(next){
   //   const response = axios.get(`https://fakestoreapi.com/products/`+this.next)
