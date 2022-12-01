@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-md-4">
-        <img class="mt-5" alt="d" :src="stores.image" width="300" />
+        <img class="mt-5" alt="men's clothing" :src="stores.image" width="300" />
       </div>
       <div class="col-md-8 pe-5">
         <h3 class="pt-5 customHeader text-start">{{ stores.title }}</h3>
