@@ -1,43 +1,32 @@
 <template>
-  <div>
+  <div id="mens">
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <!-- <nav>
+    <nav>
       <router-link to="/">Mens clothes</router-link> |
       <router-link to="/womens">Womens clothes</router-link>
     </nav>
 
     <div class="template">
-    </div> -->
-
-
-
-    
-    <router-view/>
+      <mens-component/>
+    </div>
   </div>
 </template>
 
 
 
 <script>
+import mensComponent from './mensComponent.vue'
 // import axios from 'axios'
-// export default {
-//   data(){
-//     return{
-//       stores:[]    
-//     }
-//   },
+// import WomensComponent from './WomensComponent.vue'
+export default {
+  components: { mensComponent },
 
-//   async mounted(){
-//     const response = axios.get('https://fakestoreapi.com/products/')
-//     console.log((await response).data)
-//     this.stores = (await response).data
-//   }
-// }
+}
 </script>
 
-<style>
-#app {
+<style scoped>
+#mens {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -46,7 +35,8 @@
   
 
   /* custom */
-  background-image: linear-gradient(#fc9aff, #ffffff );
+  background-image: linear-gradient(#D6E6FF 90%, #ffffff );
+  /* background-color: #397deb ; */
   /* margin: -8px -8px -8px -8px ; */
   padding: 0;
   height: 500px;
@@ -73,7 +63,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #2b08f7;
+  color: #002772;
   text-decoration: none;
 }
 </style>

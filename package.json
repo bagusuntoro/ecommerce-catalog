@@ -10,8 +10,10 @@
   "dependencies": {
     "axios": "^1.2.0",
     "bootstrap": "^5.2.3",
+    "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
+    "vue-bootstrap-datetimepicker": "^5.0.1",
     "vue-router": "^4.0.3",
     "vue-toast-notification": "^0.6.3"
   },

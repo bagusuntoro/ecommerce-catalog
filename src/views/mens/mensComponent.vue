@@ -2,27 +2,106 @@
   <div>
     <div class="row">
       <div class="col-md-4">
-        <img src="./../../assets/img/testing.PNG" alt="">
+        <img class="mt-5" alt="d" :src="stores.image" width="300" />
       </div>
-      <div class="col-md-8">
-        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, distinctio?</h3>
-        <hr>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat repellendus reiciendis eligendi autem minima sit ut impedit ex hic, distinctio, unde mollitia nobis saepe corporis facere rem aperiam esse corrupti nulla! Porro, iste expedita. In, optio nesciunt deserunt asperiores, temporibus dolorem facere hic quia obcaecati earum adipisci distinctio non pariatur natus possimus, consequuntur a quam nisi consectetur! In itaque labore dicta veritatis? Eum eius velit deleniti aperiam qui. Quis veniam perferendis hic nemo nisi nesciunt praesentium qui quasi, consectetur culpa obcaecati quibusdam. Ullam porro veritatis odit adipisci. Corporis reprehenderit ea quos aliquid maxime? Porro eos explicabo vel dolorum exercitationem amet!</p>
+      <div class="col-md-8 pe-5">
+        <h3 class="pt-5 customHeader text-start">{{ stores.title }}</h3>
+        <p class="pt-4 text-start">men's clothing</p>
+        <hr />
+        <p class="customText">{{ stores.description }}</p>
+        <br />
+        <hr />
+        <h5>{{ stores.price }}</h5>
 
-        <hr>
-
-
+        <!-- buttons -->
+        <div class="row">
+          <div class="col-md-4">
+            <button class="customBuy">Buy now</button>
+          </div>
+          <div class="col-md-4">
+            <!-- <a href=""> -->
+            <button
+              class="customNext"
+              id="next"
+              @click="
+                incrementData();
+                loading();
+              "
+            >
+              Next product
+            </button>
+            <!-- </a> -->
+          </div>
+          <div class="col-md-4">
+            
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  data() {
+    return {
+      stores: [],
+      next: 1,
+    };
+  },
 
-}
+  async mounted() {
+    // this.next++;
+    const response = axios.get(
+      `https://fakestoreapi.com/products/` + this.next
+    );
+    // console.log((await response).data)
+    this.stores = (await response).data;
+  },
+
+  methods: {
+    async incrementData() {
+      this.next++;
+
+      const response = axios.get(
+        `https://fakestoreapi.com/products/` + this.next
+      );
+      // console.log((await response).data)
+      if ((await response).data.category == "men's clothing") {
+        this.stores = (await response).data;
+      } else {
+        alert("This is last product for mens");
+      }
+      console.log(this.next);
+    },
+  },
+};
 </script>
 
-<style>
+<style scoped>
+.customHeader,
+h5 {
+  color: #002772;
+}
+
+.customText,
+h5 {
+  text-align: left;
+}
+
+button {
+  width: 259px;
+}
+
+button.customBuy {
+  background-color: #002772;
+  color: #ffffff;
+}
+
+button.customNext {
+  border-color: #002772;
+  float: left;
+}
 
 </style>
